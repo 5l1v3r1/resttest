@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Likes</title>
+<style>
+body {
+	background-color: #040082;
+	background-image: url("/static/nightsky.jpg");
+	color: white;
+	font-family: "Times New Roman", Times, serif;
+}
+a {
+	color: yellow;
+}
+div {
+	height: 100%;
+	background-color: transparent;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.left{
+	float:left; 
+	width:48%; 
+	padding-right: 5px; 
+	padding-left: 5px;
+	border-size:2px;
+	border-style:solid;
+	border-color:white;
+	background-color: black;
+	opacity: 0.8;
+	}
+.right{
+	float:right; 
+	width:48%; 
+	padding-right: 5px; 
+	padding-left: 5px;
+	border-size:2px;
+	border-style:solid;
+	border-color:white;
+	background-color: black;
+	opacity: 0.8;
+	}
+div.fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    text-align: right;
+    height: 120px;
+    width: 150px;
+    border: 2px solid white;
+}
+</style>
+</head>
+<body>
+<center>
+<h1>It seems that you like <i><font color="red">{{ like }}.</font></i></h1><br>
+Here are some things I found online relating to {{ like }}!<br><br>
+</center>
+<div class="fixed">
+<center><p>Debug</p>
+<a href="/">Search Again</a><br><br>
+<a href="/restful/api/likey">View API Requests</a>
+</center>
+</div>
+
+<div id="wrapper" style="width:100%">
+<div class="left" style=""> 
+<h3>Trending on <a href="https://twitter.com/search?q={{like}}">Twitter</a> for <i><font color="red">{{ like }}</font></i></h3>
+{% for item in hashtags %}
+	<br>{{ item }}
+{% endfor %}
+</div>
+<div class="right">  
+<h3>The latest from <a href="https://www.reddit.com/search.json?q={{like}}">Reddit</a> on <i><font color="red">{{ like }}</font></i></h3>
+{% for item in reddit %}
+	<br>{{ item }}<br>
+{% endfor %}
+</div>
+<center>
+		<iframe class="transparent" src="http://relatedwords.org/relatedto/{{like}}" style="width: 100%; height: 400px" scrolling="yes" marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0" allowTransparency="true"></iframe>  
+</center>
+<div class="fixed">
+<center><p>Debug</p>
+<a href="/">Search Again</a><br><br>
+<a href="/restful/api/likey">View API Requests</a>
+</center>
+</div>
+</div>
+
+
+</body>
+</html>
